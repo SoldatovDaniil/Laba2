@@ -4,4 +4,4 @@ typedef int TElem;
 
 void bubbleSort(TElem* arr, int N);
 void selectSort(TElem* arr, int N);
-void mergeSort(TElem* arr, int start, int finish);
+TElem* mergeSort(TElem* arr, TElem* tmp, int start, int finish);

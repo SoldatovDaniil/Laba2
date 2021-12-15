@@ -4,7 +4,7 @@
 #include <time.h>
 #include "Sort.h"
 
-#define N 10
+#define N 2
 #define TE "d"
 
 
@@ -46,13 +46,41 @@ int main()
 		selectSort(arr, N);
 		break;
 	case 3:
-		mergeSort(arr, 0, N - 1);
+		TElem *tmp = (TElem*)malloc(N * sizeof(TElem));
+		TElem* res = mergeSort(arr, tmp, 0, N - 1);
+		for (int k = 0; k < N; k++)
+		{
+			arr[k] = res[k];
+		}
 	}
-
+	
 	printf("\nSorted array:\n"); 
 	for (int j = 0; j < N; j++)
 	{
 		printf("%4" TE, arr[j]);
 	}
+
+	bool flag = 0;
+	for (int l = 0; l < N - 1; l++)
+	{
+		if (flag)
+		{
+			break;
+		}
+		if (arr[l] > arr[l + 1])
+		{
+			flag = 1;
+		}
+	}
+	printf("\n-------------------------------------------\n");
+	if (flag)
+	{
+		printf("Result is incorrect");
+	}
+	else
+	{
+		printf("Result is correct");
+	}
+
 	return 0;
 }

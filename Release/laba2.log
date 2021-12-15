@@ -1,8 +1,7 @@
 ﻿  Main.cpp
 C:\Users\Даниил\source\repos\laba2\Main.cpp(15,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  Sort.cpp
   Создание кода
-  5 of 14 functions (35.7%) were compiled, the rest were copied from previous compilation.
+  4 of 14 functions (28.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено

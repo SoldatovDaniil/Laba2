@@ -51,35 +51,49 @@ void selectSort(TElem* arr, int N)
 	}
 }
 
-void mergeSort(TElem* arr, int start, int finish)
+TElem* mergeSort(TElem* arr, TElem* tmp, int start, int finish)
 {
 	if (start == finish)
 	{
-		return;
-	} 
+		tmp[finish] = arr[finish];
+		return tmp;
+	}
 
-	int mid = (start + finish) / 2;
+	int mid = start + (finish - start) / 2;
 
-	mergeSort(arr, start, mid);
-	mergeSort(arr, mid + 1, finish);
+	TElem* arr1 = mergeSort(arr, tmp, start, mid);
+	TElem* arr2 = mergeSort(arr, tmp, mid + 1, finish);
 
-	int a1 = start;  
-	int a2 = mid + 1; 
-	int* tmp = (int*)malloc(finish * sizeof(TElem)); 
+	TElem* res = arr1 == arr ? tmp : arr;
+	
+	int start1 = start;
+	int start2 = mid + 1;
 
-	for (int step = 0; step < finish - start + 1; step++) 
+	for (int i = start1; i <= finish; i++)
 	{
-		if ((a2 > finish) || ((a1 <= mid) && (arr[a1] < arr[a2])))
+		if (start1 <= mid && start2 <= finish)
 		{
-			tmp[step] = arr[a1];
-			a1++;
+			if (arr1[start1] < arr2[start2])
+			{
+				res[i] = arr1[start1];
+				start1++;
+			}
+			else
+			{
+				res[i] = arr2[start2];
+				start2++;
+			}
+		}
+		else if (start1 <= mid)
+		{
+			res[i] = arr1[start1];
+			start1++;
 		}
 		else
 		{
-			tmp[step] = arr[a2];
-			a2++;
+			res[i] = arr2[start2];
+			start2++;
 		}
 	}
-	for (int step = 0; step < finish - start + 1; step++)
-		arr[start + step] = tmp[step];
+	return res;
 }
