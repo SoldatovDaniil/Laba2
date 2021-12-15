@@ -1,0 +1,4 @@
+﻿  Main.cpp
+C:\Users\Даниил\source\repos\laba2\Main.cpp(13,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Даниил\source\repos\laba2\Main.cpp(34,10): warning C4475: "printf": модификатор длины "T" невозможно использовать с символом поля типа "E" в описателе формата
+C:\Users\Даниил\source\repos\laba2\Main.cpp(45,2): error C2059: синтаксическая ошибка: }
