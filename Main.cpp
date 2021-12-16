@@ -4,7 +4,7 @@
 #include <time.h>
 #include "Sort.h"
 
-#define N 2
+#define N 100
 #define TE "d"
 
 
@@ -23,14 +23,14 @@ void init(TElem* arr)
 int main()
 {
 	int ch; 
-	TElem arr[N];
+	TElem* arr = (TElem*)malloc(N * sizeof(TElem));
 
 	printf("Select the sort type from the list: 1)bubble-sort 2)selection-sort 3)merge-sort\n");
 	scanf_s("%d", &ch);
 
+	printf("Not sorted array:\n");
 	init(arr);
 
-	printf("Not sorted array:\n");
 	for (int i = 0; i < N; i++)
 	{
 		printf("%4" TE, arr[i]);
@@ -52,6 +52,8 @@ int main()
 		{
 			arr[k] = res[k];
 		}
+
+		free(tmp);
 	}
 	
 	printf("\nSorted array:\n"); 
@@ -81,6 +83,8 @@ int main()
 	{
 		printf("Result is correct");
 	}
+
+	free(arr);
 
 	return 0;
 }
