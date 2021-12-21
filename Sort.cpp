@@ -18,8 +18,9 @@ void swap(TElem* a, TElem* b)
 	*b = tmp;
 }
 
-void bubbleSort(TElem* arr, int N)
+void bubbleSort(TElem* arr, int N, double* pstrt, double* pend)
 {	
+	*pstrt = clock();
 	int i, j;
 	for (i = 0; i < N; i++)
 	{
@@ -31,10 +32,12 @@ void bubbleSort(TElem* arr, int N)
 			}
 		}
 	}
+	*pend = clock();
 }
 
-void selectSort(TElem* arr, int N)
-{
+void selectSort(TElem* arr, int N, double* pstrt, double* pend)
+{	
+	*pstrt = clock();
 	int i, j;
 	int pmin = 0; 
 	for (i = 0; i < N; i++)
@@ -49,6 +52,8 @@ void selectSort(TElem* arr, int N)
 		}
 		swap(&arr[pmin], &arr[i]);
 	}
+	*pend = clock();
+
 }
 
 TElem* mergeSort(TElem* arr, TElem* tmp, int start, int finish)
@@ -58,17 +63,12 @@ TElem* mergeSort(TElem* arr, TElem* tmp, int start, int finish)
 		tmp[finish] = arr[finish];
 		return tmp;
 	}
-
 	int mid = start + (finish - start) / 2;
-
 	TElem* arr1 = mergeSort(arr, tmp, start, mid);
 	TElem* arr2 = mergeSort(arr, tmp, mid + 1, finish);
-
 	TElem* res = arr1 == arr ? tmp : arr;
-	
 	int start1 = start;
 	int start2 = mid + 1;
-
 	for (int i = start1; i <= finish; i++)
 	{
 		if (start1 <= mid && start2 <= finish)
@@ -97,3 +97,6 @@ TElem* mergeSort(TElem* arr, TElem* tmp, int start, int finish)
 	}
 	return res;
 }
+
+
+

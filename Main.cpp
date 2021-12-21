@@ -4,7 +4,7 @@
 #include <time.h>
 #include "Sort.h"
 
-#define N 100
+#define N 1000
 #define TE "d"
 
 
@@ -36,23 +36,30 @@ int main()
 		printf("%4" TE, arr[i]);
 	}
 
+	double strt, end;
+	double* pstrt = &strt;
+	double* pend = &end;
 
 	switch (ch)
 	{
 	case 1:
-		bubbleSort(arr, N);
+		bubbleSort(arr, N, pstrt, pend);
+		printf("\nRunning time %lf sec\n", (end - strt) / (CLOCKS_PER_SEC));
 		break;
 	case 2:
-		selectSort(arr, N);
+		selectSort(arr, N, pstrt, pend);
+		printf("\nRunning time %lf sec\n", (end - strt) / (CLOCKS_PER_SEC));
 		break;
 	case 3:
 		TElem *tmp = (TElem*)malloc(N * sizeof(TElem));
+		strt = clock();
 		TElem* res = mergeSort(arr, tmp, 0, N - 1);
+		end = clock();
 		for (int k = 0; k < N; k++)
 		{
 			arr[k] = res[k];
 		}
-
+		printf("\nRunning time %lf sec\n", (end - strt) / (CLOCKS_PER_SEC));
 		free(tmp);
 	}
 	
@@ -65,13 +72,13 @@ int main()
 	bool flag = 0;
 	for (int l = 0; l < N - 1; l++)
 	{
-		if (flag)
-		{
-			break;
-		}
 		if (arr[l] > arr[l + 1])
 		{
 			flag = 1;
+		}
+		if (flag)
+		{
+			break;
 		}
 	}
 	printf("\n-------------------------------------------\n");
